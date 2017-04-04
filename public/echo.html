@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Socket.io Echo Test</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const HOST = location.origin
+    const socket = io.connect(HOST)
+
+    socket.on('connect', function() {
+      document.getElementById("output").innerHTML += "<p>> CONNECTED</p>"
+
+      socket.on('msg', function(msg) {
+        document.getElementById("output").innerHTML += "<p style='color: blue'>> RESPONSE: " + msg + "</p>"
+      })
+    })
+
+    function sendMessage(message) {
+      document.getElementById("output").innerHTML += "<p>> SENT: " + message + "</p>"
+      socket.emit('msg', message)
+    }
+  </script>
+</head>
+<body>
+  <input onkeypress="if(this.value) {if (window.event.keyCode == 13) { sendMessage(this.value); this.value = null }}"/>
+  <div id="output"></div>
+</body>
+</html>
