@@ -50,6 +50,7 @@ io.on('connection', (socket) => {
         host: socket.handshake.headers.host,
         referer: socket.handshake.headers.referer,
         address: socket.handshake.address,
+        remoteAddress: socket.request.connection.remoteAddress,
         'user-agent': socket.handshake.headers['user-agent'],
         time: socket.handshake.time,
       },
