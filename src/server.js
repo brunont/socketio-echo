@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('Client disconnected'))
   socket.on('msg', (msg) => {
     console.log('received: %s', msg)
-    socket.emit('msg', msg)
+    io.emit('msg', msg)
 
     const auditMsg = {
       message: msg,
